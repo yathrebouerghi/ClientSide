@@ -1,0 +1,5 @@
+.d-flex align-items-center {
+    text-align: left;
+    /* Optional: Set a fixed or percentage width for the container */
+    width: 800px; /* Adjust the width as needed */
+  }

@@ -1,0 +1,107 @@
+<main>
+    <div class="container" >
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container" >
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                <div class="d-flex justify-content-center py-4">
+                    <div class="logo d-flex align-items-center flex-column">
+                      <img src="../../../assets/img/drapeau2.png" alt="" class="drapeau-image">
+                      <span class="d-none d-lg-block text-center">الجمهورية التونسية<br>
+                                                                  وزارة الأسرة والمرأة والطفولة وكبار السن
+                       </span>
+                    </div>
+                  </div>
+                <div class="card mb-3">
+                <div class="card-body" style="direction: rtl; text-align: right;">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">تسجيل الدخول إلى حسابك  </h5>
+                    <p class="text-center small">أدخل اسم المستخدم وكلمة المرور لتسجيل الدخول
+                    </p>
+                  </div>
+
+                  <form class="row g-3 needs-validation" name="form-signin" (ngSubmit)="formSubmit()" #f="ngForm" method="post"  novalidate>
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                      {{errorMessage}}
+                    </div>{{loginData | json}}
+                    <input type="hidden" name="${_csrf}" value="${_csrf.token}" />
+                    <div class="col-12" [ngClass]="{'has-error': f.submitted && !login.valid}">
+                      <label for="login" class="form-label">بريد الالكتروني</label>
+                      <div class="input-group has-validation">
+                        <input type="text" name="login" class="form-control" id="login" [(ngModel)]="loginData.login"  #login="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="f.submitted && !login.valid">الرجاء إدخال اسم المستخدم</div>
+                        
+                      </div>
+                    </div>
+                    
+                    <div class="col-12" [ngClass]="{'has-error': f.submitted && !pwd.valid}">
+                      <label for="pwd" class="form-label">كلمة السر</label>
+                      <input type="password" name="pwd" class="form-control" id="pwd" [(ngModel)]="loginData.pwd"  #pwd="ngModel" required>
+                      <div class="invalid-feedback" *ngIf="f.submitted && !pwd.valid"> !من فضلك أدخل رقمك السري</div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe" >
+                        <label class="form-check-label" for="rememberMe"> تذكر كلمة المرور</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit">تسجيل الدخول</button>
+                    </div>
+                    
+                  </form>
+
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+
+<!-- {{user | json}}
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5 element">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">تسجيل الدخول</h5>
+                        <form  (ngSubmit)="login(user.email)" class="form-signin">
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                                    required autofocus [(ngModel)]="user.email" name="email">
+                                <label for="inputEmail">بريد الالكتروني</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                                    required [(ngModel)]="user.password" name="password">
+                                <label for="inputPassword">كلمة السر</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">تذكر كلمة المرور </label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">تسجيل
+                                الدخول</button>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div> -->
