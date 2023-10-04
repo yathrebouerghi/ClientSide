@@ -1,0 +1,27 @@
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+td{
+    text-align: center;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+.text-arabic {
+    direction: rtl; /* Définit la direction du texte de droite à gauche */
+    text-align: right; /* Alignement du texte à droite */
+}
+
+.py-5 {
+    padding-top: 6rem!important;
+    padding-bottom: 6rem!important;
+}

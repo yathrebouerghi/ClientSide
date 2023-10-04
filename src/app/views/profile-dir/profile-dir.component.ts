@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DirecteurService } from 'src/app/services/directeur.service';
-
 @Component({
   selector: 'app-profile-dir',
   templateUrl: './profile-dir.component.html',
   styleUrls: ['./profile-dir.component.css']
 })
 export class ProfileDirComponent implements OnInit{
-
-  //afficher detail directeur 
-user:any;
+  //detail directeur
+  currentUser:any;
+  nom:any;
+  prenom:any;
   //modifier profile
   isupdated = false;
-  directeur:any;
   id:any;//l'id du user authentifié
   pwd:any
   currentPass:any
@@ -37,22 +37,20 @@ user:any;
     role: new FormControl(''),
     etat: new FormControl(''),
   });
-  constructor(private formBuilder: FormBuilder,private _service:DirecteurService,private login:AuthService){}
+  constructor(private formBuilder: FormBuilder,private _service:DirecteurService,private _login:AuthService,private router: Router){}
   
   ngOnInit(): void {
-    this.user=this.login.getUser();
-    this.id = this.user.id
-    console.log(this.user)
     this.isupdated = true;
-
-    this._service.getDirecteur(this.id).subscribe(
+    this._login.getCurrentUser().subscribe(
       (data:any) =>{
-        this.directeur = data;
-        console.log(this.directeur)
-        this.currentPass = this.directeur.pwd
+        this.currentUser = data;
+        this.nom = data.nom
+        this.prenom = data.prenom
+        console.log(this.currentUser)
+        this.currentPass = this.currentUser.pwd
       }
     )
-
+    this.id = this.currentUser.id
     this.form = this.formBuilder.group({
       login: [''],
       pwd: ['', Validators.required],
@@ -72,12 +70,11 @@ user:any;
       return;
     }
     if(this.isTrue == true && this.Mismatch == false){
-      this.directeur.pwd = this.pwd;
-      this._service.modifierPWD(this.id,this.directeur).subscribe(
-        (data:any) =>{
+      this.currentUser.pwd = this.pwd;
+      this._service.modifierPWD(this.id,this.currentUser).subscribe(
+        (data) =>{
           this.isupdated = true;
-          console.log("updated")
-          window.location.reload();
+          this.logout();
         }
       );
     }else{
@@ -106,5 +103,12 @@ user:any;
       this.Mismatch= true
       this.passwordMismatchError = 'Les nouveaux mots de passe ne correspondent pas.';
     }
+  }
+
+  
+
+  public logout(){
+    this._login.logout();
+    this.router.navigate(['/login']);
   }
 }

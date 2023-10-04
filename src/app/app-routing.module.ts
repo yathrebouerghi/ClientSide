@@ -11,6 +11,7 @@ import { RessourceHumaineComponent } from './views/ressource-humaine/ressource-h
 import { EspaceComponent } from './views/espace/espace.component';
 import { InfrastructureComponent } from './views/infrastructure/infrastructure.component';
 import { ProfileDirComponent } from './views/profile-dir/profile-dir.component';
+import { ListPersonnelsComponent } from './views/personnel/list-personnels/list-personnels.component';
 
 const routes: Routes = [
 
@@ -47,7 +48,15 @@ component:EspaceComponent,
 {path:'profileD',
 component:ProfileDirComponent,
 },
-
+{
+  path: 'personnel',
+  children:[
+    {
+      path: 'liste',
+      component:ListPersonnelsComponent,
+    },
+  ]
+},
 
 ];
 

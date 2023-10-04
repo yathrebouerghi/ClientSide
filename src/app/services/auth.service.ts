@@ -17,11 +17,21 @@ export class AuthService {
   }
 
   
-  public getCurrentUser(login: any) {
+  public getCurrentUser() {
     const storedUser = localStorage.getItem('currentUser'); 
-  
+    const login = this.getUser().login
+    if (storedUser) {
       // Return the stored user data as an observable
-      return of(JSON.parse(storedUser!));
+      return of(JSON.parse(storedUser));
+    } else {
+      // If the user data is not stored, make a request to the API
+      return this.http.get(`${URL}/SecuriteDirecteur/login/${login}`).pipe(
+        tap((user) => {
+          // Store the user data in local storage
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        })
+      );
+    }
   }
 
   public loginUser(token: string) {

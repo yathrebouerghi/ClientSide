@@ -4,3 +4,8 @@
     align-items: center;
     height: 100vh; /* Cela garantit également que l'élément est centré verticalement. */
   }
+
+.text-arabic {
+  direction: rtl; /* Définit la direction du texte de droite à gauche */
+  text-align: right; /* Alignement du texte à droite */
+}

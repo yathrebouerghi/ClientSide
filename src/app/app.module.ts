@@ -17,7 +17,15 @@ import { GestionAdmPeaComponent } from './views/gestion-adm-pea/gestion-adm-pea.
 import { RepartionEleveComponent } from './views/repartion-eleve/repartion-eleve.component';
 import { RessourceHumaineComponent } from './views/ressource-humaine/ressource-humaine.component';
 import { ProfileDirComponent } from './views/profile-dir/profile-dir.component';
-
+import { ListPersonnelsComponent } from './views/personnel/list-personnels/list-personnels.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +40,8 @@ import { ProfileDirComponent } from './views/profile-dir/profile-dir.component';
     GestionAdmPeaComponent,
     RepartionEleveComponent,
     RessourceHumaineComponent,
-    ProfileDirComponent
+    ProfileDirComponent,
+    ListPersonnelsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +49,14 @@ import { ProfileDirComponent } from './views/profile-dir/profile-dir.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

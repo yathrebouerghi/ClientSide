@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+<main>
+    <div class="container">
+      <section class="section error-404 min-vh-100 flex flex-column align-items-center justify-content-center">
+        <div class="row py-5">
+            <div class="card">
+                <div class="card-body">
+                    <label class="pull-left">
+                        <input matInput (keyup)="applyFilter($event)" placeholder="بحث" class="form-control form-control-sm" #input>
+                    </label>
+                    <table id="personnels" mat-table [dataSource]="dataSource" matSort class="table  stripe table-hover nowrap text-arabic">
+                        <ng-container matColumnDef="nomPren">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> الاسم و اللقب</th>
+                            <td mat-cell *matCellDef="let row"> {{row.nomPren}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeGenr">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> النوع الاجتماعي</th>
+                            <td mat-cell *matCellDef="let row"> </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dateNais">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> تاريخ الولادة </th>
+                            <td mat-cell *matCellDef="let row"> {{row.dateNais}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeNiveEtud">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> المستوى التعليمي</th>
+                            <td mat-cell *matCellDef="let row"> {{row.codeNiveEtud}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeSituFami">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> الحالة المدنية </th>
+                            <td mat-cell *matCellDef="let row"> {{row.codeSituFami}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeGrad">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> الرتبة  </th>
+                            <td mat-cell *matCellDef="let row"> {{row.codeGrad}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeQual">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> صفة الإطار</th>
+                            <td mat-cell *matCellDef="let row">{{row.codeQual}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeSituProf">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> الوضعية المهنية للإطار  </th>
+                            <td mat-cell *matCellDef="let row">{{row.codeSituProf}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="codeFonc">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> الخطة  </th>
+                            <td mat-cell *matCellDef="let row">{{row.codeFonc}}</td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">Aucune donnée ne correspond au filtre "{{input.value}}"
+                            </td>
+                        </tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[10,5, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                </div>
+            </div>
+        </div>
+      </section>
+    </div>
+</main>
+<script>
+    $(document).ready(function () {
+    $('#personnels').DataTable({
+        "order": [[0, "asc"]], // 0 est l'index de la colonne à trier, "asc" pour trier en ordre ascendant
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json" // Utilisez le fichier French.json pour les textes en français
+        }
+    });
+});
+</script>
