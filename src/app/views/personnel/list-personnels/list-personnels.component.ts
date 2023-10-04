@@ -33,11 +33,34 @@ export class ListPersonnelsComponent implements OnInit{
     
     this._service.getPersonnelByCode(this.codeEtab).subscribe((data:any)=>{
       this.personnels = data;
-      
+      this.personnels.forEach((personnel: PersonnelPersonnel) => {
+        this._service.getGenreByCode(personnel.codeGenr).subscribe((genreData: any) => {
+          personnel.libeGenr = genreData.libeGenr;
+        });
+        this._service.getNiveauEtdByCode(personnel.codeNiveEtud).subscribe((genreData: any) => {
+          personnel.libeNiveEtud = genreData.libeNiveEtud;
+        });
+        this._service.getSituFamiByCode(personnel.codeSituFami).subscribe((genreData: any) => {
+          personnel.libeSituFami = genreData.libeSituFami;
+        });
+        this._service.getGradeByCode(personnel.codeGrad).subscribe((genreData: any) => {
+          personnel.libeGrad = genreData.libeGrad;
+        });
+        this._service.getsitProfByCode(personnel.codeSituProf).subscribe((genreData: any) => {
+          personnel.libeSituProf = genreData.libeSituProf;
+        });
+        this._service.getQualiteByCode(personnel.codeQual).subscribe((genreData: any) => {
+          personnel.libeQual = genreData.libeQual;
+        });
+
+        this._service.getfonctionByCode(personnel.codeFonc).subscribe((genreData: any) => {
+          personnel.libeFonc = genreData.libeFonc;
+        });
+
+      });
       this.dataSource = new MatTableDataSource(this.personnels);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.personnels)
     })
     
   }

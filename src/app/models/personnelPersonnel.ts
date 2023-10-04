@@ -43,4 +43,12 @@ export class PersonnelPersonnel{
     //codeDiplNavigation : NomenclatureDiplome
     //codeGenrNavigation : NomenclatureGenre
     //codeNiveEtudNavigation : NomenclatureNiveauEtude
+
+    libeGenr!: string;
+    libeNiveEtud!:string;
+    libeSituFami!:string;
+    libeGrad!:string;
+    libeQual!:string;
+    libeSituProf!:string;
+    libeFonc!:string
 }

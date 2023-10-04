@@ -18,7 +18,6 @@ import { RepartionEleveComponent } from './views/repartion-eleve/repartion-eleve
 import { RessourceHumaineComponent } from './views/ressource-humaine/ressource-humaine.component';
 import { ProfileDirComponent } from './views/profile-dir/profile-dir.component';
 import { ListPersonnelsComponent } from './views/personnel/list-personnels/list-personnels.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -49,7 +48,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatFormFieldModule,
