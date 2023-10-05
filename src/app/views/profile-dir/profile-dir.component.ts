@@ -36,6 +36,8 @@ export class ProfileDirComponent implements OnInit{
     codeEtab: new FormControl(''),
     role: new FormControl(''),
     etat: new FormControl(''),
+    currentPassword: new FormControl(''),
+    renewPassword : new FormControl(''),
   });
   constructor(private formBuilder: FormBuilder,private _service:DirecteurService,private _login:AuthService,private router: Router){}
   
@@ -59,6 +61,8 @@ export class ProfileDirComponent implements OnInit{
       codeEtab: [''],
       role: [''],
       etat: [''],
+      currentPassword: ['', Validators.required],
+      renewPassword: ['', Validators.required]
     })
   }
   get f(){  

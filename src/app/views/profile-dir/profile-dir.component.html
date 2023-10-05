@@ -239,7 +239,7 @@
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة السر الحالية</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="currentPassword" type="text" class="form-control" id="currentPassword" [(ngModel)]="currentPassword"
+                        <input name="currentPassword" type="text" class="form-control" id="currentPassword" formControlName="currentPassword"
                         (input)="checkCurrentPassword($event)" required>
                         <div class="text-danger" *ngIf="isTrue == false">{{ currentPasswordError }}</div>
                       </div>
@@ -249,7 +249,7 @@
                       <label for="pwd" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="pwd" type="text" class="form-control" formControlName="pwd" [(ngModel)]="pwd" required 
-                        [ngClass]="{ 'is-invalid': !isupdated && f['pwd'].errors }">
+                        [ngClass]="{ 'is-invalid': !isupdated && f['pwd'].errors }" >
                         <div *ngIf="!isupdated && f['pwd'].errors" class="invalid-feedback">
                           <div *ngIf="f['pwd'].errors['required']">Chapm obligatoir</div>
                         </div>
@@ -260,7 +260,7 @@
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">
                         أعد إدخال كلمة المرور الجديدة</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewPassword" type="text" class="form-control" id="renewPassword" [(ngModel)]="renewPassword"
+                        <input name="renewPassword" type="text" class="form-control" id="renewPassword" formControlName="renewPassword"
                         (input)="checkRenewPassword($event)" required>
                         <div class="text-danger" *ngIf="Mismatch == true">{{ passwordMismatchError }}</div>
                       </div>
