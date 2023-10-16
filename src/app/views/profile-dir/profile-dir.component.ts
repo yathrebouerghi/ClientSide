@@ -75,10 +75,13 @@ export class ProfileDirComponent implements OnInit{
       etat: [''],
       currentPassword: ['', Validators.required],
       renewPassword: ['', Validators.required]
+<<<<<<< HEAD
     })
 
     this._etab.GetEtablissement(this.codeEtab).subscribe((data:any)=>{
       this.etablissement  = data;
+=======
+>>>>>>> 3f2bec2822eca3e4a8134f9b070cc1fac4d532ce
     })
   }
   get f(){  
