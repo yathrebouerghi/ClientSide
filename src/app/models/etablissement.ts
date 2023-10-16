@@ -40,5 +40,4 @@ export class Etablissement {
     causFerm !: string
     userFerm !: string
     dateTime !: Date
-
 }

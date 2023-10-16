@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Etablissement } from 'src/app/models/etablissement';
+import { NomenclatureGouvernorat } from 'src/app/models/nomenclatureGouvernorat';
 import { AuthService } from 'src/app/services/auth.service';
 import { DirecteurService } from 'src/app/services/directeur.service';
+import { EtablissementService } from 'src/app/services/etablissement.service';
 @Component({
   selector: 'app-profile-dir',
   templateUrl: './profile-dir.component.html',
@@ -36,20 +39,31 @@ export class ProfileDirComponent implements OnInit{
     codeEtab: new FormControl(''),
     role: new FormControl(''),
     etat: new FormControl(''),
+    currentPassword: new FormControl(''),
+    renewPassword : new FormControl(''),
   });
-  constructor(private formBuilder: FormBuilder,private _service:DirecteurService,private _login:AuthService,private router: Router){}
+
+  gouvernorats:NomenclatureGouvernorat[]=[]
+
+  etablissement: Etablissement = new Etablissement();
+  codeEtab:any;
+  constructor(private formBuilder: FormBuilder,private _service:DirecteurService,private _etab:EtablissementService,private _login:AuthService,private router: Router){}
   
   ngOnInit(): void {
-    this.isupdated = true;
+    
     this._login.getCurrentUser().subscribe(
       (data:any) =>{
         this.currentUser = data;
         this.nom = data.nom
         this.prenom = data.prenom
-        console.log(this.currentUser)
         this.currentPass = this.currentUser.pwd
+        this.codeEtab = data.codeEtab;
       }
     )
+    this.isupdated = true;
+    this._etab.getGouv().subscribe((data:any)=>{
+      this.gouvernorats = data
+    })
     this.id = this.currentUser.id
     this.form = this.formBuilder.group({
       login: [''],
@@ -59,6 +73,12 @@ export class ProfileDirComponent implements OnInit{
       codeEtab: [''],
       role: [''],
       etat: [''],
+      currentPassword: ['', Validators.required],
+      renewPassword: ['', Validators.required]
+    })
+
+    this._etab.GetEtablissement(this.codeEtab).subscribe((data:any)=>{
+      this.etablissement  = data;
     })
   }
   get f(){  

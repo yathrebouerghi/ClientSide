@@ -40,7 +40,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     RepartionEleveComponent,
     RessourceHumaineComponent,
     ProfileDirComponent,
-    ListPersonnelsComponent
+    ListPersonnelsComponent,
   ],
   imports: [
     BrowserModule,

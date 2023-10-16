@@ -25,7 +25,7 @@
               </ul>
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">تفاصيل</h5>
+                  <h1 class="card-title">تفاصيل</h1>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label "> الرتبة</div>
                     <div class="col-lg-9 col-md-8">منشط</div>
@@ -80,14 +80,14 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> رقم بطاقة التعريف  </label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="">
+                        <input name="company" type="text" class="form-control" id="company" value="{{etablissement.numePiecIden}}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">تاريخ إصدارها</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="">
+                        <input name="job" type="text" class="form-control" id="Job" value="{{etablissement.dateDeliv | date: 'dd/MM/yyyy'}}">
                       </div>
                     </div>
 
@@ -99,9 +99,9 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">الإسم و اللقب</label>
+                      <label for="about" class="col-md-4 col-lg-3 col-form-label">الاسم و اللقب </label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="nom" type="text" class="form-control" id="nom" value="{{currentUser.nom}}">
+                        <input name="fullName" type="text" class="form-control" id="fullName" value="{{etablissement.nomPrenFond}}">
                       </div>
                     </div>
 
@@ -115,7 +115,7 @@
                     <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">مكان الولادة</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="">
+                        <input name="address" type="text" class="form-control" id="Address" value="{{etablissement.lieuNaisFond}}">
                       </div>
                     </div>
 
@@ -147,9 +147,12 @@
                       </div>
                     </div>
                     <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">   الولايـة </label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> الولايـة</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="">
+                        <select id="libeTypeEtab" class="form-select " >
+                          <option value="">---  الولايـة  ---</option>
+                          <option *ngFor="let type of gouvernorats">{{type.libeGouv}}</option>
+                        </select>
                       </div>
                     </div>
 
@@ -239,7 +242,7 @@
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة السر الحالية</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="currentPassword" type="text" class="form-control" id="currentPassword" [(ngModel)]="currentPassword"
+                        <input name="currentPassword" type="text" class="form-control" id="currentPassword" formControlName="currentPassword"
                         (input)="checkCurrentPassword($event)" required>
                         <div class="text-danger" *ngIf="isTrue == false">{{ currentPasswordError }}</div>
                       </div>
@@ -260,7 +263,7 @@
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">
                         أعد إدخال كلمة المرور الجديدة</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewPassword" type="text" class="form-control" id="renewPassword" [(ngModel)]="renewPassword"
+                        <input name="renewPassword" type="text" class="form-control" id="renewPassword" formControlName="renewPassword"
                         (input)="checkRenewPassword($event)" required>
                         <div class="text-danger" *ngIf="Mismatch == true">{{ passwordMismatchError }}</div>
                       </div>
@@ -282,15 +285,15 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <h2>{{currentUser.nom}}</h2>
-              <h3>مدير </h3>
+              <h2>{{currentUser.nom}} {{currentUser.prenom}}</h2>
+              <h3>{{currentUser.role}} </h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                 <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
               </div>
-            </div>
+            </div>{{currentUser | json}}
           </div>
         </div>
       </div>

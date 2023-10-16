@@ -5,9 +5,11 @@
         <div class="row py-5">
             <div class="card">
                 <div class="card-body">
-                    <label class="pull-left">
-                        <input matInput (keyup)="applyFilter($event)" placeholder="بحث" class="form-control form-control-sm" #input>
-                    </label>
+                    <div class="text-arabic">
+                        <label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="بحث" class="form-control form-control-sm" #input>
+                        </label>
+                    </div>
                     <table id="personnels" mat-table [dataSource]="dataSource" matSort class="table  stripe table-hover nowrap text-arabic">
                         <ng-container matColumnDef="nomPren">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> الاسم و اللقب</th>
@@ -35,7 +37,7 @@
                         </ng-container>
                         <ng-container matColumnDef="codeQual">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> صفة الإطار</th>
-                            <td mat-cell *matCellDef="let row">{{row.codeQual}}</td>
+                            <td mat-cell *matCellDef="let row">{{row.libeQual}}</td>
                         </ng-container>
                         <ng-container matColumnDef="codeSituProf">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> الوضعية المهنية للإطار  </th>

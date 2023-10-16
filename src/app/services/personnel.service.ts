@@ -7,6 +7,7 @@ import { NomenclatureSituationFamiliale } from '../models/nomenclatureSituationF
 import { NomenclatureGrade } from '../models/nomenclatureGrade';
 import { NomenclatureSituPro } from '../models/nomenclatureSituPro';
 import { NomenclatureFonction } from '../models/nomenclatureFonction';
+import { NomenclatureQualite } from '../models/nomenclatureQualite';
 
 let baseUrl = "https://localhost:7051/api/PersonnelPersonnels"
 
@@ -38,7 +39,7 @@ export class PersonnelService {
     return this.http.get<NomenclatureGrade>(`${baseUrl}/grade/${codeGrade}`);
   }
   getQualiteByCode(codeQualite:any){
-    return this.http.get<NomenclatureGrade>(`${baseUrl}/qualite/${codeQualite}`);
+    return this.http.get<NomenclatureQualite>(`${baseUrl}/qualite/${codeQualite}`);
   }
   getsitProfByCode(codesirProf:any){
     return this.http.get<NomenclatureSituPro>(`${baseUrl}/sitProf/${codesirProf}`);
